@@ -29,27 +29,32 @@ const asideLgCloseClick = (event) => {
   emit('aside-lg-close-click', event)
 }
 </script>
-
 <template>
   <aside
     id="aside"
-    class="lg:py-2 lg:pl-2 w-60 fixed flex z-40 top-0 h-screen transition-position overflow-hidden"
+    class="fixed top-0 z-40 flex h-screen overflow-hidden lg:py-2 lg:pl-2 w-60 transition-position"
   >
-    <div class="aside lg:rounded-2xl flex-1 flex flex-col overflow-hidden dark:bg-slate-900">
-      <div class="aside-brand flex flex-row h-14 items-center justify-between dark:bg-slate-900">
-        <div class="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0">
-          <b class="font-black">One</b>
+    <div class="flex flex-col flex-1 overflow-hidden aside lg:rounded-2xl dark:bg-slate-900">
+      <div class="flex flex-row items-center justify-between aside-brand h-14 dark:bg-slate-900">
+        <!-- Contenedor con el logo y el texto, centrado -->
+        <div class="flex items-center justify-center flex-1">
+          <img src="http://e-cont.mx/img/logo-contarapp-03.png" alt="Logo" class="h-8 mr-2"> <!-- Logo -->
+          <b class="font-black">E-cont</b> <!-- Texto con font-black -->
         </div>
-        <button class="hidden lg:inline-block xl:hidden p-3" @click.prevent="asideLgCloseClick">
-          <BaseIcon :path="mdiClose" />
+
+        <!-- Botón para cerrar el menú -->
+        <button class="hidden p-3 lg:inline-block xl:hidden" @click.prevent="asideLgCloseClick">
+          <!-- Icono con color constante -->
+          <BaseIcon :path="mdiClose" class="text-white" />
         </button>
       </div>
-      <div
-        class="flex-1 overflow-y-auto overflow-x-hidden aside-scrollbars dark:aside-scrollbars-[slate]"
-      >
+
+      <!-- Contenedor del menú -->
+      <div class="flex-1 overflow-y-auto overflow-x-hidden aside-scrollbars dark:aside-scrollbars-[slate]">
         <AsideMenuList :menu="menu" @menu-click="menuClick" />
       </div>
 
+      <!-- Menú de logout -->
       <ul>
         <AsideMenuItem :item="logoutItem" @menu-click="menuClick" />
       </ul>
